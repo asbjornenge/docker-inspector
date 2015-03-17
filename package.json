@@ -1,0 +1,22 @@
+{
+  "name": "docker-inspector",
+  "version": "1.0.0",
+  "description": "Inspect one or all docker containers on one or more hosts",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R nyan -w --check-leaks"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asbjornenge/docker-inspector.git"
+  },
+  "keywords": [
+    "docker"
+  ],
+  "author": "Asbjorn Enge <asbjorn@hanafjedle.net>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/asbjornenge/docker-inspector/issues"
+  },
+  "homepage": "https://github.com/asbjornenge/docker-inspector"
+}
