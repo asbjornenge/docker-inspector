@@ -1,5 +1,6 @@
 var async   = require('async')
 var request = require('request')
+var assign = Object.assign || require('object.assign')
 
 var Inspector = function(options) {
     this.options = options
@@ -14,7 +15,7 @@ Inspector.prototype = {
                 if (!payload) return each_cb(err)
                 async.each(JSON.parse(payload), function(container, container_cb) {
                     request(`${_host}/containers/${container.Id}/json`, (err, resp, payload) => {
-                        containers.push(Object.assign(JSON.parse(payload), { Host : host }))
+                        containers.push(assign(JSON.parse(payload), { Host : host }))
                         container_cb(err)
                     })
                 }, function(err) {
@@ -30,7 +31,7 @@ Inspector.prototype = {
         async.each(this.options.hosts, (host, each_cb) => {
             request(`http://${host.host}:${host.port}/containers/${id}/json`, (err, resp, payload) => {
                 if (!payload) return each_cb(err)
-                containers.push(Object.assign(JSON.parse(payload), { Host : host }))
+                containers.push(assign(JSON.parse(payload), { Host : host }))
                 each_cb(err)
             })
         }, function(err) {

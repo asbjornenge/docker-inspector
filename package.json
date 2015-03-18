@@ -1,6 +1,6 @@
 {
   "name": "docker-inspector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Inspect one or all docker containers on one or more hosts",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/asbjornenge/docker-inspector",
   "dependencies": {
     "async": "^0.9.0",
+    "object.assign": "^1.1.1",
     "request": "^2.53.0"
   },
   "devDependencies": {
