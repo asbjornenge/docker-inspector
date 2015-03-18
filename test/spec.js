@@ -1,6 +1,6 @@
 var assert    = require('assert')
-var inspector = require('../index')({ hosts: [{ host : "127.0.0.1", port : 4243 }]})
-var broken    = require('../index')({ hosts: [{ host : "127.0.0.1", port : 4443 }]})
+var inspector = require('../inspector')({ hosts: [{ host : "127.0.0.1", port : 4243 }]})
+var broken    = require('../inspector')({ hosts: [{ host : "127.0.0.1", port : 4443 }]})
 
 it('can inspect all containers across hosts', (done) => {
     inspector.inspect((err, containers) => {
