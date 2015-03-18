@@ -5,16 +5,21 @@ var request = require("request");
 var assign = Object.assign || require("object.assign");
 
 var Inspector = function Inspector(options) {
-    this.options = options;
+    this.options = assign({
+        all: false,
+        limit: 0
+    }, options);
 };
 Inspector.prototype = {
     inspect: function inspect(cb, id) {
+        var _this = this;
+
         if (id) {
             return this.inspectSingleContainer(cb, id);
         }var containers = [];
         async.each(this.options.hosts, function (host, each_cb) {
             var _host = "http://" + host.host + ":" + host.port;
-            request("" + _host + "/containers/json", function (err, resp, payload) {
+            request("" + _host + "/containers/json?all=" + _this.options.all + "&limit=" + _this.options.limit, function (err, resp, payload) {
                 if (!payload) return each_cb(err);
                 async.each(JSON.parse(payload), function (container, container_cb) {
                     request("" + _host + "/containers/" + container.Id + "/json", function (err, resp, payload) {

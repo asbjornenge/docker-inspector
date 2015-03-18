@@ -3,7 +3,10 @@ var request = require('request')
 var assign = Object.assign || require('object.assign')
 
 var Inspector = function(options) {
-    this.options = options
+    this.options = assign({
+        all   : false,
+        limit : 0 
+    }, options)
 }
 Inspector.prototype = {
     inspect : function(cb, id) {
@@ -11,7 +14,7 @@ Inspector.prototype = {
         let containers = []
         async.each(this.options.hosts, (host, each_cb) => {
             let _host = `http://${host.host}:${host.port}`
-            request(`${_host}/containers/json`, (err, resp, payload) => {
+            request(`${_host}/containers/json?all=${this.options.all}&limit=${this.options.limit}`, (err, resp, payload) => {
                 if (!payload) return each_cb(err)
                 async.each(JSON.parse(payload), function(container, container_cb) {
                     request(`${_host}/containers/${container.Id}/json`, (err, resp, payload) => {
