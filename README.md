@@ -31,6 +31,10 @@ limit    // Max number of containers              (default 0     -> no limit)
 
 ## Changelog
 
+### 2.0.0
+
+* Removed `request` requrement
+
 ### 1.1.0
 
 * Added support for option *all*
