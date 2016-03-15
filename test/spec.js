@@ -2,6 +2,8 @@ var assert    = require('assert')
 var inspector = require('../inspector')({ hosts: [{ host : "127.0.0.1", port : 4243 }]})
 var broken    = require('../inspector')({ hosts: [{ host : "127.0.0.1", port : 4443 }]})
 
+// NOTE: This requires 2 containers running on 127.0.0.1:4243, one of which is named dispatcher
+
 it('can inspect all containers across hosts', (done) => {
     inspector.inspect((err, containers) => {
         assert(err == null)
